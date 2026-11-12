@@ -1,6 +1,10 @@
 # 95-ground-tiles
 
-Ground imagery tiles for NINETY5IVE's Try Your Seat (served by GitHub Pages). Nothing else lives here: no code, no keys, no personal data.
+Ground imagery tiles for NINETY5IVE's Try Your Seat, and the app's idle "Paused" page (both served by GitHub Pages). No keys, no personal data.
+
+- `pause/`: the page a browser tab moves to after 30 idle minutes in the app, so the app stops running for it. Written by
+  `build_pause_page.py` in the app repo (do not edit here). Orbitron: SIL Open Font License 1.1 (licence inside the font file).
+  "Paused" is a picture of the word; the font it was drawn with is not here.
 
 - `v1/<route>/L<level>/<i>_<j>.webp`: 1024 px tiles at 30 m (L0), 60 m (L1) and 120 m (L2) along each route. Each texel is the ratio between
   NASA HLS's colour and its own 500 m blur (128 + 42.5 x log2(ratio)); the page multiplies NASA Blue Marble's colour by it.

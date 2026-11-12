@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Paused — NINETY5IVE</title>
+<!-- The idle pause page (idle_pause.py; docs/FEATURES.md "Idle pause"). SOURCE: this file in the app repo; build_pause_page.py
+     copies it with core.js, the wordmark, Orbitron and the "Paused" picture to the PUBLIC repo ninety5ive/95-ground-tiles
+     (GitHub Pages, folder pause/), so it is always there and never wakes the app (Nov 12 2026). No live connection, nothing
+     from other sites: a tab left here costs nothing. Continue returns to the page named after '#' in this page's address.
+     "Paused" is a picture of the word in Cyberway Riders (the font file itself stays private: commercial licence).
+     Orbitron: SIL Open Font License 1.1 (licence text inside the font file). Safari rules (docs/DESIGN_SYSTEM.md). -->
+<style>
+  @font-face { font-family: "Orbitron"; src: url("Orbitron-wght.ttf") format("truetype"); font-weight: 400 900; font-display: swap; }
+  :root { --bg: #08080A; --panel: #16161A; --gold: #DEBF4E; --text: #E9E4D2; --muted: #A7A08A; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+               font: 400 16px/1.6 "Orbitron", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+  main { min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 24px 16px; box-sizing: border-box; }
+  .card { max-width: 440px; width: 100%; background: var(--panel); border: 1px solid rgba(222,191,78,.45);
+          border-radius: 12px; padding: 32px 28px; box-sizing: border-box; text-align: center; }
+  .mark { display: block; width: 220px; max-width: 80%; height: auto; margin: 0 auto 20px; }
+  h1 { margin: 0 0 16px; line-height: 0; }
+  h1 img { height: 44px; width: auto; max-width: 100%; }
+  p { margin: 0 0 24px; color: var(--text); }
+  .small { color: var(--muted); font-size: 14px; margin: 20px 0 0; }
+  button { -webkit-appearance: none; appearance: none; border: 1px solid var(--gold); background: var(--gold); color: #08080A;
+           font: 600 16px/1 "Orbitron", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+           padding: 14px 28px; border-radius: 8px; cursor: pointer; min-width: 200px; }
+  button:hover { filter: brightness(1.08); }
+  button:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <img class="mark" src="wordmark_gold.png" width="1200" height="251" alt="NINETY5IVE">
+    <h1><img src="paused.png" alt="Paused"></h1>
+    <p>This tab was idle for 30 minutes, so it disconnected to save server time. Nothing you saved is affected.</p>
+    <button id="go" type="button">Continue</button>
+    <p class="small">Continue takes you back to the page you were on.</p>
+  </div>
+</main>
+<script src="core.js"></script>
+<script>
+  var APP = 'https://app.ninety5ive.com';   // the only site Continue ever goes to
+  document.getElementById('go').addEventListener('click', function () {
+    var back = '/';
+    try { back = n95IdleBackFromHash(location.hash); } catch (x) { back = '/'; }
+    location.replace(APP + back);
+  });
+</script>
+</body>
+</html>
